@@ -5,7 +5,18 @@ library(tidyr)
 library(RODBC)
 library(feather)
 
-connectionString <- 'Driver=SQL Server;Server=seguroenergydb.database.windows.net,1433;Database=seguroenergy;Uid=seguroenergy;Pwd=SeGurO$67!;Encrypt=yes;'
+myServer <- "seguroenergydb.database.windows.net"
+myUser <- "seguroenergy"
+myPassword <- #Agregar contraseña
+myDatabase <- "seguroenergy"
+myDriver <- "SQL Server" 
+
+connectionString <- paste0(
+  "Driver=", myDriver, 
+  ";Server=", myServer, 
+  ";Database=", myDatabase, 
+  ";Uid=", myUser, 
+  ";Pwd=", myPassword)
 sqlQuery <- "SELECT * FROM CANTIDAD_ASIGNADA_ZONA_CARGA"
 conn <- odbcDriverConnect(connectionString)
 data <- sqlQuery(conn, sqlQuery)
